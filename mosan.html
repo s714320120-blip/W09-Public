@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mosan 寵物美容工作室 | 星際級寵物呵護體系</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4ff',
+                            100: '#e0e8ff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            900: '#1e1b4b',
+                        },
+                        cosmic: {
+                            dark: '#0b0f19',
+                            card: '#161d2f',
+                            accent: '#38bdf8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .glass-card {
+            background: rgba(22, 29, 47, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-effect {
+            box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.3);
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-cosmic-dark text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- 導覽列 -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-slate-800/60 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-cosmic-accent flex items-center justify-center text-white shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid font-bold fa-paw text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-cosmic-accent">mosan</span>
+                        <span class="text-[10px] tracking-widest text-slate-400 uppercase -mt-1">Pet Grooming Studio</span>
+                    </div>
+                </a>
+
+                <!-- 選單 - 桌面版 -->
+                <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+                    <a href="#services" class="hover:text-cosmic-accent transition-colors">服務項目</a>
+                    <a href="#pricing" class="hover:text-cosmic-accent transition-colors">服務價目</a>
+                    <a href="#calculator" class="hover:text-cosmic-accent transition-colors">年齡換算</a>
+                    <a href="#health-education" class="hover:text-cosmic-accent transition-colors">健康衛教</a>
+                    <a href="#features" class="hover:text-cosmic-accent transition-colors">特色亮點</a>
+                    <a href="#location" class="hover:text-cosmic-accent transition-colors">基地位置</a>
+                    <a href="#contact" class="hover:text-cosmic-accent transition-colors">預約聯繫</a>
+                </div>
+
+                <!-- 預約按鈕 -->
+                <div class="hidden md:flex items-center">
+                    <a href="tel:09000001234" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-600 to-cosmic-accent text-white font-semibold text-sm shadow-lg hover:shadow-brand-500/25 hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-xs"></i>
+                        <span>即刻預約</span>
+                    </a>
+                </div>
+
+                <!-- 行動裝置選單開關 -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 行動裝置選單內容 -->
+        <div class="md:hidden hidden border-b border-slate-800 bg-cosmic-dark/95 backdrop-blur-xl px-4 pt-2 pb-6" id="mobile-menu">
+            <div class="flex flex-col space-y-4 pt-2">
+                <a href="#services" class="text-slate-300 hover:text-cosmic-accent text-base py-1 border-b border-slate-800/40">服務項目</a>
+                <a href="#pricing" class="text-slate-300 hover:text-cosmic-accent text-base py-1 border-b border-slate-800/40">服務價目</a>
+                <a href="#calculator" class="text-slate-300 hover:text-cosmic-accent text-base py-1 border-b border-slate-800/40">年齡換算</a>
+                <a href="#health-education" class="text-slate-300 hover:text-cosmic-accent text-base py-1 border-b border-slate-800/40">健康衛教</a>
+                <a href="#features" class="text-slate-300 hover:text-cosmic-accent text-base py-1 border-b border-slate-800/40">特色亮點</a>
+                <a href="#location" class="text-slate-300 hover:text-cosmic-accent text-base py-1 border-b border-slate-800/40">基地位置</a>
+                <a href="#contact" class="text-slate-300 hover:text-cosmic-accent text-base py-1">預約聯繫</a>
+                <a href="tel:09000001234" class="w-full mt-2 py-3 text-center rounded-xl bg-gradient-to-r from-brand-600 to-cosmic-accent text-white font-bold flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-phone"></i> 撥打預約電話 0900-000-1234
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主視覺 Banner (Hero) -->
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <!-- 背景裝飾光暈 -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-cosmic-accent/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-500/30 text-cosmic-accent text-xs sm:text-sm font-medium">
+                        <span class="flex h-2 w-2 rounded-full bg-cosmic-accent animate-ping"></span>
+                        星際級專業寵物美容體驗
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight tracking-tight">
+                        給毛孩最溫柔的<br>
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-cosmic-accent to-white glow-text">星航級美容沙龍</span>
+                    </h1>
+                    
+                    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        在 <span class="text-white font-semibold">mosan</span>，我們將每一次洗沐與造型轉換為放鬆沉浸的星際之旅。採用無刺激微泡SPA、專屬洗劑與極致耐心的溫柔手法，讓毛孩擁有巨星般的璀璨毛色。
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="tel:09000001234" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-600 via-brand-500 to-cosmic-accent text-white font-bold text-lg shadow-xl shadow-brand-600/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-calendar-check text-xl"></i>
+                            <span>預約美容洗沐</span>
+                        </a>
+                        <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-card text-slate-200 font-semibold text-lg hover:bg-slate-800/50 transition-all flex items-center justify-center gap-2 border border-slate-700">
+                            <span>探索服務項目</span>
+                            <i class="fa-solid fa-arrow-down text-sm"></i>
+                        </a>
+                    </div>
+
+                    <!-- 統計資訊 -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-white">100%</div>
+                            <div class="text-xs text-slate-400">一對一專屬照顧</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-cosmic-accent">Zero</div>
+                            <div class="text-xs text-slate-400">零壓力零綁縛環境</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brand-400">5★</div>
+                            <div class="text-xs text-slate-400">星雲市飼主推薦</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 視覺圖案 -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden glass-card p-4 glow-effect border border-slate-700/50">
+                        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=800&q=80" 
+                             alt="可愛美容寵物" 
+                             class="w-full h-full object-cover rounded-2xl filter brightness-95 contrast-105"
+                             onerror="this.src='https://placehold.co/800x800/161d2f/ffffff?text=mosan+Pet+Studio'">
+                        
+                        <!-- 懸浮浮動卡片 -->
+                        <div class="absolute bottom-8 left-8 right-8 glass-card p-4 rounded-xl border border-white/10 flex items-center gap-4 animate-bounce-slow">
+                            <div class="w-12 h-12 rounded-lg bg-brand-500/20 text-cosmic-accent flex items-center justify-center flex-shrink-0 text-xl">
+                                <i class="fa-solid fa-sparkles"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">太空站二路專屬寵物服務</h4>
+                                <p class="text-xs text-slate-300">給毛孩無與倫比尊榮護理</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服務項目 Section -->
+    <section id="services" class="py-24 relative bg-slate-950/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-cosmic-accent">SERVICES</h2>
+                <h3 class="text-3xl sm:text-5xl font-black text-white">mosan 專業服務項目</h3>
+                <p class="text-slate-400 text-base">針對不同犬貓品種與毛質需求，提供精細劃分的客製化洗沐與大美容提案。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 卡片 1: 基礎精緻洗沐 -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between hover:-translate-y-2 transition-all duration-300 group border border-slate-800 hover:border-brand-500/40">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-shower"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3">基礎精緻洗沐</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            適合日常清潔維護。包含深層清耳、剪指甲、修腳底毛、肛門腺清潔，搭配天然低敏有機植萃洗毛精深層潔淨。
+                        </p>
+                        <ul class="space-y-2.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 雙重草本低敏洗沐</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 耳道清潔與指甲修剪</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 腳底毛與私密處修理</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 全身手吹拉毛烘乾</li>
+                        </ul>
+                    </div>
+                    <a href="tel:09000001234" class="w-full py-3 rounded-xl border border-brand-500/30 text-center font-semibold text-brand-400 hover:bg-brand-500 hover:text-white transition-all">預約洗沐</a>
+                </div>
+
+                <!-- 卡片 2: 全套造型大美容 (熱門) -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between hover:-translate-y-2 transition-all duration-300 group border-2 border-brand-500/60 relative glow-effect">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-brand-500 to-cosmic-accent text-white font-bold text-xs rounded-full uppercase tracking-wider">
+                        熱門首選
+                    </div>
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-cosmic-accent/10 text-cosmic-accent flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-cosmic-accent group-hover:text-slate-950 transition-all">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3">星級造型大美容</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            包含基礎洗沐全套內容，並由專業美容師為您的愛寵量身設計最符合身形與氣質的全身手修剪造型。
+                        </p>
+                        <ul class="space-y-2.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 含「基礎精緻洗沐」全項目</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 日系/韓系專屬手修剪造型</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 臉部圓頭/熊頭微調修飾</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 毛髮光澤護理精華</li>
+                        </ul>
+                    </div>
+                    <a href="tel:09000001234" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-cosmic-accent text-center font-bold text-white shadow-lg hover:brightness-110 transition-all">預約大美容</a>
+                </div>
+
+                <!-- 卡片 3: 太空舒壓深層SPA -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between hover:-translate-y-2 transition-all duration-300 group border border-slate-800 hover:border-brand-500/40">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3">太空舒壓泥面膜/SPA</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            針對肌膚乾燥、換毛期皮屑或毛髮緊繃寵物設計。利用微氣泡泡澡與深海礦物泥，深層滋養毛囊與皮膚。
+                        </p>
+                        <ul class="space-y-2.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 超微米氣泡舒壓按摩浴</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 天然深海礦物死海泥包覆</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 皮膚保濕草本精華護理</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cosmic-accent text-xs"></i> 緊張情緒芳香療法放鬆</li>
+                        </ul>
+                    </div>
+                    <a href="tel:09000001234" class="w-full py-3 rounded-xl border border-brand-500/30 text-center font-semibold text-brand-400 hover:bg-brand-500 hover:text-white transition-all">預約 SPA 護理</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 價目表 Section -->
+    <section id="pricing" class="py-20 relative bg-slate-900/40 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cosmic-accent/10 text-cosmic-accent text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-tag"></i>
+                    <span>PRICING MENU</span>
+                </div>
+                <h3 class="text-3xl sm:text-5xl font-black text-white">mosan 服務價目表</h3>
+                <p class="text-slate-400 text-base">價格透明公開，所有收費包含完整基本清潔保養與一對一貼心照護。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 小型犬價目卡片 -->
+                <div class="glass-card rounded-3xl p-8 border border-slate-800 hover:border-brand-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-2xl font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-dog text-brand-400 text-xl"></i>
+                                小型犬
+                            </h4>
+                            <span class="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300 font-medium">10kg 以下</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-6">如：貴賓、博美、吉娃娃、約克夏、雪納瑞等</p>
+
+                        <div class="space-y-4 border-t border-b border-slate-800/80 py-6 mb-6">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-300 font-semibold">基礎精緻洗沐</span>
+                                <div class="text-right">
+                                    <span class="text-2xl font-black text-cosmic-accent">NT$ 600</span>
+                                    <span class="text-xs text-slate-500 block">起 / 次</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-300 font-semibold">星級造型大美容</span>
+                                <div class="text-right">
+                                    <span class="text-2xl font-black text-brand-400">NT$ 1,200</span>
+                                    <span class="text-xs text-slate-500 block">起 / 次</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-2 text-xs text-slate-400 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400"></i> 含洗耳、剪指甲、修腳底毛</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400"></i> 深層清潔肛門腺與私密處修理</li>
+                        </ul>
+                    </div>
+                    <a href="tel:09000001234" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white font-bold text-center transition-all block">預約小型犬美容</a>
+                </div>
+
+                <!-- 中型犬價目卡片 -->
+                <div class="glass-card rounded-3xl p-8 border border-slate-800 hover:border-brand-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-2xl font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-dog text-cosmic-accent text-2xl"></i>
+                                中型犬
+                            </h4>
+                            <span class="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300 font-medium">10 ~ 25kg</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-6">如：柴犬、柯基、法鬥、喜樂蒂、米克斯等</p>
+
+                        <div class="space-y-4 border-t border-b border-slate-800/80 py-6 mb-6">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-300 font-semibold">基礎精緻洗沐</span>
+                                <div class="text-right">
+                                    <span class="text-2xl font-black text-cosmic-accent">NT$ 900</span>
+                                    <span class="text-xs text-slate-500 block">起 / 次</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-300 font-semibold">星級造型大美容</span>
+                                <div class="text-right">
+                                    <span class="text-2xl font-black text-brand-400">NT$ 1,800</span>
+                                    <span class="text-xs text-slate-500 block">起 / 次</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-2 text-xs text-slate-400 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cosmic-accent"></i> 雙重退毛與深層廢毛除理</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cosmic-accent"></i> 天然草本低敏護理洗沐</li>
+                        </ul>
+                    </div>
+                    <a href="tel:09000001234" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-cosmic-accent hover:text-slate-950 text-slate-200 font-bold text-center transition-all block">預約中型犬美容</a>
+                </div>
+
+                <!-- 貓咪價目卡片 -->
+                <div class="glass-card rounded-3xl p-8 border border-slate-800 hover:border-brand-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-2xl font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-cat text-purple-400 text-xl"></i>
+                                貓咪洗沐
+                            </h4>
+                            <span class="text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 font-medium">全品種適用</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-6">短毛貓 / 長毛貓，獨立低壓美容環境</p>
+
+                        <div class="space-y-4 border-t border-b border-slate-800/80 py-6 mb-6">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-300 font-semibold">短毛貓精緻洗沐</span>
+                                <div class="text-right">
+                                    <span class="text-2xl font-black text-cosmic-accent">NT$ 1,000</span>
+                                    <span class="text-xs text-slate-500 block">起 / 次</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-300 font-semibold">長毛貓精緻洗沐</span>
+                                <div class="text-right">
+                                    <span class="text-2xl font-black text-brand-400">NT$ 1,400</span>
+                                    <span class="text-xs text-slate-500 block">起 / 次</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-2 text-xs text-slate-400 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-purple-400"></i> 無狗聲干擾之靜音隔離空間</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-purple-400"></i> 含剪指甲、清耳、去油去屑洗沐</li>
+                        </ul>
+                    </div>
+                    <a href="tel:09000001234" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-purple-600 text-slate-200 hover:text-white font-bold text-center transition-all block">預約貓咪洗沐</a>
+                </div>
+            </div>
+
+            <!-- 價目補充備註 -->
+            <div class="mt-8 text-center text-xs text-slate-500">
+                ＊大型犬（25kg 以上）或打結較嚴重毛孩，費用將由美容師現場檢視毛況後報價。
+            </div>
+        </div>
+    </section>
+
+    <!-- 年齡換算器 Section -->
+    <section id="calculator" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-brand-500/30 glow-effect relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 bg-cosmic-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="max-w-3xl mx-auto text-center space-y-4 mb-12">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cosmic-accent/10 text-cosmic-accent text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-calculator"></i>
+                        <span>PET AGE CONVERTER</span>
+                    </div>
+                    <h3 class="text-3xl sm:text-4xl font-black text-white">星際毛孩年齡換算器</h3>
+                    <p class="text-slate-400 text-sm sm:text-base">想知道您家寶貝在人類世界相當於幾歲嗎？輸入年齡即刻換算，為毛孩定制合適的護理計劃！</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- 輸入表單區 -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- 物種選擇 -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">選擇毛孩種類</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <button type="button" id="btn-dog" onclick="selectPetType('dog')" class="py-3 px-4 rounded-xl border border-brand-500 bg-brand-500/20 text-white font-bold flex items-center justify-center gap-2 transition-all">
+                                    <i class="fa-solid fa-dog text-lg"></i>
+                                    <span>狗狗 (Dog)</span>
+                                </button>
+                                <button type="button" id="btn-cat" onclick="selectPetType('cat')" class="py-3 px-4 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-400 font-bold flex items-center justify-center gap-2 hover:border-slate-600 transition-all">
+                                    <i class="fa-solid fa-cat text-lg"></i>
+                                    <span>貓咪 (Cat)</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 體型選擇 (僅限狗狗) -->
+                        <div id="dog-size-container" class="space-y-2">
+                            <label for="dog-size" class="block text-xs font-bold uppercase tracking-wider text-slate-400">狗狗體型 (影響後續衰老速度)</label>
+                            <select id="dog-size" onchange="calculateAge()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-cosmic-accent transition-all text-sm">
+                                <option value="small">小型犬 (10kg 以下，如貴賓、吉娃娃)</option>
+                                <option value="medium" selected>中型犬 (10-25kg，如柴犬、柯基)</option>
+                                <option value="large">大型犬 (25kg 以上，如黃金獵犬、哈士奇)</option>
+                            </select>
+                        </div>
+
+                        <!-- 年齡輸入 -->
+                        <div class="space-y-2">
+                            <label for="pet-age" class="block text-xs font-bold uppercase tracking-wider text-slate-400">毛孩實際年齡 (歲)</label>
+                            <div class="relative">
+                                <input type="number" id="pet-age" value="3" min="0.1" max="30" step="0.5" oninput="calculateAge()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 text-lg font-bold focus:outline-none focus:border-cosmic-accent transition-all">
+                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">歲</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 計算結果卡片 -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-gradient-to-br from-slate-900 via-cosmic-card to-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-700/80 text-center space-y-4 relative overflow-hidden">
+                            <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">相當於人類年齡</div>
+                            <div class="flex items-baseline justify-center gap-1">
+                                <span id="human-age-result" class="text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-cosmic-accent to-white glow-text">28</span>
+                                <span class="text-xl font-bold text-slate-400">歲</span>
+                            </div>
+
+                            <div class="pt-4 border-t border-slate-800 space-y-2">
+                                <div id="age-stage" class="inline-block px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 text-xs font-bold">
+                                    青壯年期 · 活潑充沛
+                                </div>
+                                <p id="age-tip" class="text-xs text-slate-400 leading-relaxed pt-1">
+                                    活動力強，建議定期洗沐清潔與皮膚保濕護理。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 寵物健康衛教小知識 Section -->
+    <section id="health-education" class="py-24 relative bg-slate-950/70 border-y border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-notes-medical"></i>
+                    <span>PET HEALTH CARE</span>
+                </div>
+                <h3 class="text-3xl sm:text-5xl font-black text-white">mosan 星際健康衛教學院</h3>
+                <p class="text-slate-400 text-base">真正的美容源自於健康！瞭解毛孩細微的生理構造與觀念，美容才能美得安全、舒適又長久。</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 衛教 1：腳毛修剪與步態代償 -->
+                <div class="glass-card rounded-3xl p-8 border border-slate-800 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
+                                <i class="fa-solid fa-paw mr-1"></i> 肉墊防滑與關節健康
+                            </span>
+                            <span class="text-xs text-slate-500">KNOWLEDGE #01</span>
+                        </div>
+
+                        <h4 class="text-2xl font-bold text-white group-hover:text-cosmic-accent transition-colors">
+                            腳毛過度修剪與步態代償
+                        </h4>
+
+                        <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                            <p>
+                                許多飼主以為「腳底毛剃得越乾淨越好」，但肉墊間隙的毛髮其實具有防震與緩衝保護功能。若**過度剃除（剔傷趾縫皮膜）**，易造成發炎感染；反之，若**長期不修剪**導致腳毛蓋住肉墊，毛孩在滑溜地板走動時會持續滑倒。
+                            </p>
+
+                            <div class="bg-slate-900/80 rounded-2xl p-4 border border-slate-800 space-y-2">
+                                <h5 class="font-bold text-amber-400 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                                    <i class="fa-solid fa-triangle-exclamation"></i> 什麼是「步態代償」？
+                                </h5>
+                                <p class="text-xs text-slate-400">
+                                    當肉墊因毛髮過長失去抓地力，毛孩為了維持平衡，會下意識調整出全身肌肉緊繃、後肢外八或弓背的不正常走姿。長期下來將導致**膝蓋骨脫位、脊椎負擔過重與關節炎**等代償性傷害。
+                                </p>
+                            </div>
+
+                            <div class="pt-2 border-t border-slate-800/80">
+                                <h5 class="font-bold text-white text-xs mb-2.5">💡 mosan 專業黃金修理原則：</h5>
+                                <ul class="space-y-2 text-xs text-slate-400">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i>
+                                        <span>**恰到好處的平齊**：僅修剪超越肉墊平面的過長雜毛，完整保留趾縫間的安全緩衝墊。</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i>
+                                        <span>**溫和低熱刀頭**：選用寵物專用微型冷刀頭，絕不硬剃趾縫深處，防止紅腫與舔腳問題。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 衛教 2：耳道拔毛與清潔通風學 -->
+                <div class="glass-card rounded-3xl p-8 border border-slate-800 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-lg bg-sky-500/10 text-sky-400 text-xs font-bold border border-sky-500/20">
+                                <i class="fa-solid fa-ear-listen mr-1"></i> 耳道護理與通風學
+                            </span>
+                            <span class="text-xs text-slate-500">KNOWLEDGE #02</span>
+                        </div>
+
+                        <h4 class="text-2xl font-bold text-white group-hover:text-cosmic-accent transition-colors">
+                            耳道拔毛與清潔的黃金距離與通風學
+                        </h4>
+
+                        <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                            <p>
+                                貴賓、比熊等犬種耳內常會長毛。過去傳統美容觀念主張「全部拔光」，但頻繁用力拔毛會在毛囊留下創口，甚至導致**發炎化膿與急性耳炎**。
+                            </p>
+
+                            <div class="bg-slate-900/80 rounded-2xl p-4 border border-slate-800 space-y-2">
+                                <h5 class="font-bold text-sky-400 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                                    <i class="fa-solid fa-wind"></i> 現代耳道「通風學」概念
+                                </h5>
+                                <p class="text-xs text-slate-400">
+                                    耳道的健康關鍵在於**乾爽與空氣流通**。毛囊是防禦第一線，盲目拔光毛髮反而給予耳癢螨與馬拉色菌侵入創口的機會。建立良好的透氣循環才是預防耳臭與耳垢過多的根本之道。
+                                </p>
+                            </div>
+
+                            <div class="pt-2 border-t border-slate-800/80">
+                                <h5 class="font-bold text-white text-xs mb-2.5">💡 mosan 減壓耳道護理黃金標準：</h5>
+                                <ul class="space-y-2 text-xs text-slate-400">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-0.5"></i>
+                                        <span>**修剪代替強拔**：對於非發炎耳道，優先使用圓頭耳毛剪修剪耳開口雜毛，促進自然通風。</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-0.5"></i>
+                                        <span>**黃金距離輕柔潔耳**：僅以天然草本潔耳液清洗外耳廓與垂墜部，絕不深掏耳道內部傷及鼓膜。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色亮點 Section -->
+    <section id="features" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-cosmic-accent mb-2">WHY CHOOSE US</h2>
+                        <h3 class="text-3xl sm:text-4xl font-black text-white">為什麼星雲市的飼主都選擇 mosan？</h3>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-5">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-1">全預約制一對一服務</h4>
+                                <p class="text-slate-400 text-sm">拒絕籠裝等待與嘈雜環境，美容過程保持安靜放鬆，給毛孩足夠安全感。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div class="w-12 h-12 rounded-2xl bg-cosmic-accent/20 text-cosmic-accent flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-shield-cat"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-1">全程透明與極致衛生</h4>
+                                <p class="text-slate-400 text-sm">工具每組洗滌後皆經過醫療級紫外線消毒，工作室維持無味無菌環境。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-1">國家級持照專業美容師</h4>
+                                <p class="text-slate-400 text-sm">具備豐富犬貓行為學知識與多年手修經驗，溫柔應對各種性格的毛孩子。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 互動圖片展區 -->
+                <div class="grid grid-cols-2 gap-4">
+                    <img class="w-full h-64 object-cover rounded-3xl border border-slate-800" src="https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=600&q=80" alt="美容細節" onerror="this.src='https://placehold.co/600x800/161d2f/ffffff?text=Detail+1'">
+                    <img class="w-full h-64 object-cover rounded-3xl border border-slate-800 translate-y-6" src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80" alt="洗沐過程" onerror="this.src='https://placehold.co/600x800/161d2f/ffffff?text=Detail+2'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地點與資訊 Section -->
+    <section id="location" class="py-24 bg-slate-950/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-slate-800 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="inline-block px-3 py-1 rounded-md bg-brand-500/20 text-brand-400 text-xs font-bold">
+                            LOCATION & CONTACT
+                        </div>
+                        <h3 class="text-3xl font-black text-white">工作室資訊與位置</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            歡迎隨時與我們取得聯繫，預約最適合您家寶貝的專屬美容時間。
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-cosmic-accent flex-shrink-0 mt-1">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400">工作室地址</div>
+                                    <div class="text-base font-bold text-white mt-0.5">星雲市 太空站軌道二路 42 號</div>
+                                    <div class="text-xs text-slate-500 mt-1">（設有專屬寵物停車位與休息會客區）</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-brand-400 flex-shrink-0 mt-1">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400">預約專線</div>
+                                    <a href="tel:09000001234" class="text-xl font-black text-cosmic-accent hover:underline mt-0.5 inline-block">
+                                        0900-000-1234
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-purple-400 flex-shrink-0 mt-1">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400">營業時間</div>
+                                    <div class="text-sm font-semibold text-slate-200 mt-0.5">週二至週日 10:00 - 20:00</div>
+                                    <div class="text-xs text-slate-500">（週一固定公休星際整備）</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 模擬地圖展區 -->
+                    <div class="lg:col-span-7 flex flex-col justify-center">
+                        <div class="w-full h-80 rounded-2xl bg-slate-900 border border-slate-800 relative overflow-hidden flex items-center justify-center group">
+                            <!-- 科技地圖背景模擬 -->
+                            <div class="absolute inset-0 opacity-30 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                            
+                            <!-- 定位標記點 -->
+                            <div class="relative z-10 flex flex-col items-center">
+                                <div class="w-16 h-16 rounded-full bg-brand-500/30 flex items-center justify-center animate-pulse">
+                                    <div class="w-10 h-10 rounded-full bg-brand-500 flex items-center justify-center text-white text-xl shadow-lg">
+                                        <i class="fa-solid fa-paw"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-3 px-4 py-2 rounded-xl glass-card border border-cosmic-accent/40 text-center">
+                                    <div class="text-xs font-bold text-cosmic-accent">mosan 太空站基地</div>
+                                    <div class="text-[10px] text-slate-400">軌道二路 42 號</div>
+                                </div>
+                            </div>
+
+                            <!-- 複製地址快捷按鈕 -->
+                            <button onclick="copyAddress()" class="absolute bottom-4 right-4 px-4 py-2 rounded-lg bg-slate-800/90 text-xs font-medium text-slate-200 hover:bg-slate-700 transition-all flex items-center gap-2 border border-slate-700">
+                                <i class="fa-solid fa-copy"></i>
+                                <span id="copy-text">複製完整地址</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 預約 Call-to-Action Section -->
+    <section id="contact" class="py-20 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="glass-card rounded-3xl p-10 sm:p-16 border border-brand-500/30 glow-effect bg-gradient-to-b from-cosmic-card to-slate-950">
+                <h3 class="text-3xl sm:text-5xl font-black text-white mb-4">準備好為毛孩預約星級護理了嗎？</h3>
+                <p class="text-slate-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+                    因堅持一對一高品質照護服務，每日美容名額有限。請即刻來電預約專屬時段！
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="tel:09000001234" class="w-full sm:w-auto px-10 py-4 rounded-2xl bg-gradient-to-r from-brand-600 to-cosmic-accent text-white font-black text-xl shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>撥打電話 0900-000-1234</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 Footer -->
+    <footer class="border-t border-slate-800/60 bg-cosmic-dark py-12 text-slate-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">
+                        <i class="fa-solid fa-paw"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white tracking-wider">mosan</span>
+                    <span class="text-xs text-slate-500">| 星雲市寵物美容工作室</span>
+                </div>
+                <div class="text-center md:text-right">
+                    <p>&copy; 2026 mosan Pet Grooming Studio. All rights reserved.</p>
+                    <p class="text-xs text-slate-600 mt-1">地址：太空站軌道二路 42 號，星雲市 | 電話：0900-000-1234</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast 訊息通知元件 -->
+    <div id="toast" class="fixed bottom-6 right-6 px-5 py-3 rounded-xl bg-cosmic-accent text-slate-950 font-bold text-sm shadow-xl transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center gap-2 z-50">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-msg">地址已成功複製！</span>
+    </div>
+
+    <!-- JavaScript 互動與邏輯 -->
+    <script>
+        // 行動裝置導覽列 toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // 點擊選單連結後自動關閉行動選單
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // 複製地址功能
+        function copyAddress() {
+            const addressText = "太空站軌道二路 42 號，星雲市";
+            
+            // 相容性複製剪貼簿
+            const tempInput = document.createElement("input");
+            tempInput.value = addressText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            // 顯示 Toast 訊息
+            showToast("工作室地址已複製到剪貼簿！");
+        }
+
+        // Toast 彈出效果
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.innerText = message;
+            
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // 年齡換算器邏輯
+        let currentPetType = 'dog';
+
+        function selectPetType(type) {
+            currentPetType = type;
+            const dogBtn = document.getElementById('btn-dog');
+            const catBtn = document.getElementById('btn-cat');
+            const dogSizeContainer = document.getElementById('dog-size-container');
+
+            if (type === 'dog') {
+                dogBtn.className = 'py-3 px-4 rounded-xl border border-brand-500 bg-brand-500/20 text-white font-bold flex items-center justify-center gap-2 transition-all';
+                catBtn.className = 'py-3 px-4 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-400 font-bold flex items-center justify-center gap-2 hover:border-slate-600 transition-all';
+                dogSizeContainer.classList.remove('hidden');
+            } else {
+                catBtn.className = 'py-3 px-4 rounded-xl border border-cosmic-accent bg-cosmic-accent/20 text-white font-bold flex items-center justify-center gap-2 transition-all';
+                dogBtn.className = 'py-3 px-4 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-400 font-bold flex items-center justify-center gap-2 hover:border-slate-600 transition-all';
+                dogSizeContainer.classList.add('hidden');
+            }
+
+            calculateAge();
+        }
+
+        function calculateAge() {
+            const ageInput = parseFloat(document.getElementById('pet-age').value);
+            const humanAgeResult = document.getElementById('human-age-result');
+            const ageStage = document.getElementById('age-stage');
+            const ageTip = document.getElementById('age-tip');
+
+            if (isNaN(ageInput) || ageInput <= 0) {
+                humanAgeResult.innerText = '0';
+                ageStage.innerText = '請輸入有效年齡';
+                ageTip.innerText = '';
+                return;
+            }
+
+            let humanAge = 0;
+
+            if (currentPetType === 'cat') {
+                // 貓咪換算公式（第1年約15歲，第2年約24歲，之後每年+4歲）
+                if (ageInput <= 1) {
+                    humanAge = Math.round(ageInput * 15);
+                } else if (ageInput <= 2) {
+                    humanAge = Math.round(15 + (ageInput - 1) * 9);
+                } else {
+                    humanAge = Math.round(24 + (ageInput - 2) * 4);
+                }
+            } else {
+                // 狗狗換算公式（根據體型調整）
+                const size = document.getElementById('dog-size').value;
+                if (ageInput <= 1) {
+                    humanAge = Math.round(ageInput * 15);
+                } else if (ageInput <= 2) {
+                    humanAge = Math.round(15 + (ageInput - 1) * 9);
+                } else {
+                    let yearlyFactor = 4; // 小型犬每年約 +4 歲
+                    if (size === 'medium') yearlyFactor = 5;
+                    if (size === 'large') yearlyFactor = 7;
+                    
+                    humanAge = Math.round(24 + (ageInput - 2) * yearlyFactor);
+                }
+            }
+
+            humanAgeResult.innerText = humanAge;
+
+            // 年齡階段說明與專業保養建議
+            if (humanAge < 15) {
+                ageStage.innerText = '幼年期 · 探索學習';
+                ageTip.innerText = '建議從小適應洗沐剪爪，培養不怕美容的好習慣！';
+            } else if (humanAge < 40) {
+                ageStage.innerText = '青壯年期 · 活潑充沛';
+                ageTip.innerText = '活動力強，建議定期洗沐清潔與皮膚保濕護理。';
+            } else if (humanAge < 60) {
+                ageStage.innerText = '熟齡期 · 穩重溫和';
+                ageTip.innerText = '毛髮與皮膚逐漸需要滋養，推薦體驗太空舒壓泥面膜 SPA。';
+            } else {
+                ageStage.innerText = '高齡期 · 尊榮照護';
+                ageTip.innerText = 'mosan 提供溫柔一對一低壓美容，呵護關節與敏感皮膚。';
+            }
+        }
+
+        // 頁面載入時先執行一次計算
+        window.onload = function() {
+            calculateAge();
+        };
+    </script>
+</body>
+</html>
